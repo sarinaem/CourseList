@@ -39,11 +39,11 @@ const courses = [
     title: "React Course",
     description:
       "this course is diffrent with others and you can work by new tools and...",
-    imageUrl: "../public/img/image1.jpg",
-    rate: "3.9",
+    imageUrl: "../public/img/img2.jpg",
+    rate: "2.9",
     tags: ["Marketing", "Finance"],
-    start: "2023-07-01T20:46:30.615Z",
-    status: "Active",
+    start: "2024-07-01T20:46:30.615Z",
+    status: "Upcoming",
   },
 ];
 

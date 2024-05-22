@@ -1,37 +1,16 @@
 
 
-function CourseCard(props) {
-    console.log(props.course);
+function CourseCard({course}) {
+    // console.log(course);
   return (
     <div className="course-item">
     <div className="course-item__img">
-      <img src={props.course.imageUrl} alt="{props.course.title}" />
+      <img src={course.imageUrl} alt={course.title} />
     </div>
     <div className="course-item__detail">
-      <div className="course-item__body">
-        <div>
-          <p className='title'>{props.course.title}</p>
-          <p className='desc'>{props.course.description}</p>
-        </div>
-        <span className='rate'>{props.course.rate}</span>
-      </div>
-      <div className="course-item__footer">
-          <div className='tags'>
-            {props.course.tags.map((t) =>{
-                return <span key={t} className='badge badge--secondary '>react.js</span>
-            })}
-          </div>
-          <div className="caption">
-            <div className="date">{new Date(props.course.start).toLocaleDateString("en-US", {
-              month: "short",
-              year:"2-digit",
-              day:"numeric"
-              
-            })}</div>
-            <span className='badge badge--primary '>{props.course.status}</span>
-    
-          </div>
-      </div>
+      <CourseCardBody title={course.title} description={course.description} rate={course.rate}/>
+      <CourseCardFooter course={course}/>
+     
     </div>
     </div>) 
 }
@@ -40,3 +19,43 @@ export default CourseCard
 
 
 // rfce write
+
+
+
+
+function CourseCardBody({title, description, rate}) {
+  return (<div className="course-item__body">
+  <div>
+    <p className='title'>{title}</p>
+    <p className='desc'>{description}</p>
+  </div>
+  <span className='rate'>⭐{rate}</span>
+</div>)
+}
+
+
+function CourseCardFooter({course}) {
+  const startedAt = new Date(course.start).toLocaleDateString("en-US", {
+    month: "short",
+    year:"2-digit",
+    day:"numeric"
+    
+  })
+  // console.log(course);
+  return(
+  <div className="course-item__footer">
+  <div className='tags'>
+    {course.tags.map((t) =>{
+      // we can write index becuase it is not change
+        return <span key={t} className='badge badge--secondary '>react.js</span>
+    })} 
+  </div>
+  <div className="caption">
+    <div className="date">‍
+      {startedAt}
+      </div>
+    <span className={`badge ${course.status === "Active" ? "badge--primary" : course.status === "Upcoming" ? "badge--danger" : "badge--secondary"}`}>{course.status}</span>
+
+  </div>
+</div>)
+}
